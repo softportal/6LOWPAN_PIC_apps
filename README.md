@@ -9,14 +9,13 @@ Lucas Segarra Fernández
 ## Memoria
 
 
-Analiza los ficheros xc.h y proc/p32mx470f512h.h, tratando de entender cómo
+_Analiza los ficheros xc.h y proc/p32mx470f512h.h, tratando de entender cómo_
 
-se realiza el acceso a los registros de Entrada/Salida. Puedes utilizar el pro-
-pio editor de MPLAB, que permite navegar sencillamente a través de los fi-
-
-cheros de tu proyecto. También puede resultarte útil analizar el código des-
-ensambaldo por medio del depurador, opción que se explica más adelan-
-te en este documento. Por último, te puede resultar útil la siguiente página:
+_se realiza el acceso a los registros de Entrada/Salida. Puedes utilizar el pro-_
+_pio editor de MPLAB, que permite navegar sencillamente a través de los fi-_
+_cheros de tu proyecto. También puede resultarte útil analizar el código des-_
+_ensambaldo por medio del depurador, opción que se explica más adelan-_
+_te en este documento. Por último, te puede resultar útil la siguiente página:_
 
 http://www.johnloomis.org/microchip/pic32/bitfields/bitfield3.html
 
