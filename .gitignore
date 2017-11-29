@@ -52,3 +52,5 @@ Mkfile.old
 dkms.conf
 /app0.X/nbproject/private/
 /app0.X/dist/default/
+app0.X/nbproject/Makefile-genesis.properties
+app0.X/nbproject/Makefile-variables.mk
