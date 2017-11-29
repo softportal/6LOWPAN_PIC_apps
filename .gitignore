@@ -50,7 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-/app0.X/nbproject/private/
-/app0.X/dist/default/
-app0.X/nbproject/Makefile-genesis.properties
-app0.X/nbproject/Makefile-variables.mk
+nbproject/private/
+dist/default/
+nbproject/Makefile-genesis.properties
+nbproject/Makefile-variables.mk
