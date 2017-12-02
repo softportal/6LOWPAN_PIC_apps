@@ -2,7 +2,7 @@
 
 ### Alumnos
 
-Sergio Semedi Barranco 
+Sergio Semedi Barranco
 Lucas Segarra Fernández
 
 
@@ -75,5 +75,18 @@ Esta union (no memory fragment) nos permite acceder a los diferentes campos de b
       T1CONbits.TON = 1;
     
 
+_Depura la aplicación con la herramienta Simulator. Puedes partir de las pruebas su-_
+_geridas en esta sección y probar otras opciones que vayas descubriendo. Luego, de-_
+_pura la aplicación en la placa, siguiendo instrucciones similares (en este caso, ten-_
+_drás que reconfigurar el proyecto para que utilice como herramienta hardware el_
+_PICkit-3)._
 
+Project_properties -> Elegimos Simulator.
+Tools->options->Embedded->Debug startud[Halt at Main].
+
+El programa se para justo antes de empezar la ejecución y podemos avanzar libremente, en el primer ejemplo
+lo único que haremos será poner los bits determinados a 1 para que se encienda el led.
+
+También se nos presenta la opción de _Halt at Reset Vector_ esto es muy util para cuando nos interesa
+para el sistema justo cuando el core se resetea.
 

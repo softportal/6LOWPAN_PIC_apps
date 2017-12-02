@@ -54,3 +54,5 @@ nbproject/private/
 dist/default/
 nbproject/Makefile-genesis.properties
 nbproject/Makefile-variables.mk
+/app0.X/dist/default/
+/app0.X/build/default/
