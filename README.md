@@ -90,3 +90,102 @@ lo único que haremos será poner los bits determinados a 1 para que se encienda
 También se nos presenta la opción de _Halt at Reset Vector_ esto es muy util para cuando nos interesa
 para el sistema justo cuando el core se resetea.
 
+_¿Cuál es y dónde se invoca la función que inicializa los LEDs? Analiza a fondo tan-_
+_to la función genérica de Contiki como la función específica de la placa con la que_
+
+_estamos trabajando._
+_Analiza la función ledstoggle hasta encontrar el código de escritura en el registro de_
+_entrada/salida conectado con el LED1 y relaciónalo con el código Bare Metal de la_
+_sección anterior. Si lo necesitas, puedes ayudarte del depurador, como se explica en_
+_la sección siguiente._
+
+leds_init es una funcion de contiki definida en core/dev/leds.h.
+La implementación de estas funciones se suelen encontrar en el fichero leds_arch.v de 
+cada plataforma. Ya que la función leds_init se dedicará a llamar a la función
+específica dependiendo de la plataforma en la que nos encontremos.
+
+core/dev/leds.h
+
+        void leds_init(void);
+
+core/dev/leds.c
+
+```c
+void
+leds_init(void)
+{
+  leds_arch_init(); --> mikro-e
+  leds = 0;
+}
+```
+
+En el caso de mikro-e si nos vamos al fichero inicial: contiki-mikro-e-main.c que es
+como su nombre indica el primer punto de ejecución de código para esta plataforma
+encontramos en el main:
+
+```c
+int
+main(int argc, char **argv)
+{
+  int32_t r = 0;
+
+  pic32_init();
+  watchdog_init();
+  clock_init();
+  leds_init();
+  platform_init();
+```
+
+La función leds_toggle funciona de la misma manera que leds_init
+
+        $ grep -R leds_toggle | grep leds.h
+        core/dev/leds.h:void leds_toggle(unsigned char leds);
+
+```c
+void
+leds_toggle(unsigned char ledv)
+{
+  show_leds(leds ^ ledv);
+}
+```
+
+```c
+show_leds(unsigned char new_leds)
+{
+  ...
+
+  ...
+
+  leds_arch_set(leds); --> mikro-e
+}
+
+```
+
+volvemos a la funcion arch específica para nuestra plataforma:
+
+```c
+void
+leds_arch_set(unsigned char leds)
+{
+  if(leds & LED1) {
+    GPIO_SET(LED1_PORT, LED1_PIN);
+  } else {
+    GPIO_CLR(LED1_PORT, LED1_PIN);
+  }
+
+  if(leds & LED2) {
+    GPIO_SET(LED2_PORT, LED2_PIN);
+  } else {
+    GPIO_CLR(LED2_PORT, LED2_PIN);
+  }
+}
+...
+...
+
+Correspondientes macros: /cpu/pic32/lib/pic32_gpio.h
+#define __GPIO_SET(port, pin)                                     \
+  do {                                                            \
+    LAT##port##SET = _LAT##port##_LAT##port##pin##_MASK;          \
+  } while(0)
+
+```
