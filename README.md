@@ -189,3 +189,17 @@ Correspondientes macros: /cpu/pic32/lib/pic32_gpio.h
   } while(0)
 
 ```
+
+_¿Qué tendrías que modificar en el fichero test-motion.c para que sólo se ilumine el
+LED de la derecha al detectar movimiento?_
+
+Bastaría con intercambiar la llamada a la función leds_on(LEDS_ALL) por
+leds_toggle(LED1); o leds_on(LED1);
+
+
+Describe las acciones que desata, en el ejemplo de test-motion.c, un cambio en el va-
+lor del puerto D0 del PIC32.
+
+
+
+
