@@ -61,24 +61,28 @@ PROCESS_THREAD(main_process, ev, data)
   PROCESS_BEGIN();
 
   {
+
     while(1)
     {
+        leds_off(LED1);
+        leds_off(LED2);
+
+        PROCESS_WAIT_EVENT_UNTIL((ev == sensors_event));
         if ( ev == sensors_event)
         {
             if(data == SENSOR1)
             {
-                printf("botton_left \n");
-                leds_toggle(LED1);
+                leds_on(LED1);
+                while((SENSOR1)->value(BUTTON1));
             }
             else if (data == SENSOR2)
             {
-                printf("botton_right \n");
-                leds_toggle(LED2);
+                leds_on(LED2);
+                while((SENSOR2)->value(BUTTON2));
             }
         }
     }
   }
-
   PROCESS_END();
 }
 
