@@ -202,4 +202,20 @@ lor del puerto D0 del PIC32.
 
 
 
+Porque los botones son un puerto de entrada, por lo tanto nos vale con leer su valor
+y comprobar como esta el estado de tensión.
+
+
+El fichero relay-click.c tiene un pequeño bug que ha-
+ce que uno de los dos relés no funcione. Trata de encontrar y solucionar la
+errata. A continuación, implementa una nueva función en ese mismo fichero
+relay-click.c) que intercambie el estado del relé 1 por el del relé 2 y vice-
+versa; es decir, si el relé 1 está cerrado y el 2 abierto, el 1 pasará a estar abierto
+y el 2 cerrado. Prueba esta nueva función modificando el ejemplo disponible en
+platform/mikro-e/apps/test-relay/test-relay.c.
+
+
+
+
+
 
