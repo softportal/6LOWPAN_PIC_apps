@@ -215,6 +215,27 @@ y el 2 cerrado. Prueba esta nueva función modificando el ejemplo disponible en
 platform/mikro-e/apps/test-relay/test-relay.c.
 
 
+La errata la encontramos en la definicion de los enumerados de los Relés
+el segundo relé esta mal definido, por lo tanto no funcionará ninguna
+funcionalidad ya que al llegar a los switch case siempre que queramos
+preguntar por el estará undefined
+
+
+Función:
+
+```c
+void change()
+{
+
+    if (GPIO_VALUE(RELAY1_PORT, RELAY1_PIN) == GPIO_VALUE(RELAY2_PORT, RELAY2_PIN))
+        return;
+
+      GPIO_INV(RELAY1_PORT, RELAY1_PIN);
+      GPIO_INV(RELAY2_PORT, RELAY2_PIN);
+}
+```
+
+
 
 
 
