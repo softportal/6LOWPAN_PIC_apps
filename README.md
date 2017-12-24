@@ -183,6 +183,8 @@ leds_arch_set(unsigned char leds)
 ...
 
 Correspondientes macros: /cpu/pic32/lib/pic32_gpio.h
+
+```c
 #define __GPIO_SET(port, pin)                                     \
   do {                                                            \
     LAT##port##SET = _LAT##port##_LAT##port##pin##_MASK;          \
@@ -234,6 +236,44 @@ void change()
       GPIO_INV(RELAY2_PORT, RELAY2_PIN);
 }
 ```
+
+
+
+Analiza en detalle la implementación de las fun-
+ciones motion_click_enable(MIKROBUS_1) y
+motion_click_attach_callback(MIKROBUS_1, motion_callback).
+Compara las funciones internas de la librería LetMeCreate con las de la práctica 1, y
+verás importantes diferencias; por ejemplo, en el modo de acceder a los dispositivos
+en Contiki, que ya no es a través de ficheros como en OpenWRT, sino escribiendo
+directamente los registros de Entrada/Salida.
+
+
+
+Vamos a analizar la función enable:
+
+```c
+int motion_click_enable(uint8_t mikrobus_index)
+{
+    uint8_t gpio_pin;
+
+    if (gpio_get_pin(mikrobus_index, TYPE_RST, &gpio_pin) < 0)
+        return -1;
+
+    if (!gpio_init(gpio_pin)
+    &&  !gpio_set_direction(gpio_pin, GPIO_OUTPUT)
+    &&  !gpio_set_value(gpio_pin, 1))
+        return 0;
+
+    return -1;
+}
+```
+
+
+Observamos que lo primero que hacemos es intentar optener el pin de entrada/salida
+Para ello con la inferfaz de letmecreate esta tan fin como pasarle el indice
+mikrobus para poder identificarlo, por lo tanto le pasamos un puntero a la función
+gpio_get_pin y si retorna 0, tendremos el valor del pin en nuestro puntero.
+
 
 
 
