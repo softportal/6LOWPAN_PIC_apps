@@ -208,13 +208,13 @@ Porque los botones son un puerto de entrada, por lo tanto nos vale con leer su v
 y comprobar como esta el estado de tensión.
 
 
-El fichero relay-click.c tiene un pequeño bug que ha-
-ce que uno de los dos relés no funcione. Trata de encontrar y solucionar la
-errata. A continuación, implementa una nueva función en ese mismo fichero
-relay-click.c) que intercambie el estado del relé 1 por el del relé 2 y vice-
-versa; es decir, si el relé 1 está cerrado y el 2 abierto, el 1 pasará a estar abierto
-y el 2 cerrado. Prueba esta nueva función modificando el ejemplo disponible en
-platform/mikro-e/apps/test-relay/test-relay.c.
+_El fichero relay-click.c tiene un pequeño bug que ha-_
+_ce que uno de los dos relés no funcione. Trata de encontrar y solucionar la_
+_errata. A continuación, implementa una nueva función en ese mismo fichero_
+_relay-click.c) que intercambie el estado del relé 1 por el del relé 2 y vice-_
+_versa; es decir, si el relé 1 está cerrado y el 2 abierto, el 1 pasará a estar abierto_
+_y el 2 cerrado. Prueba esta nueva función modificando el ejemplo disponible en_
+_platform/mikro-e/apps/test-relay/test-relay.c._
 
 
 La errata la encontramos en la definicion de los enumerados de los Relés
@@ -239,13 +239,13 @@ void change()
 
 
 
-Analiza en detalle la implementación de las fun-
-ciones motion_click_enable(MIKROBUS_1) y
-motion_click_attach_callback(MIKROBUS_1, motion_callback).
-Compara las funciones internas de la librería LetMeCreate con las de la práctica 1, y
-verás importantes diferencias; por ejemplo, en el modo de acceder a los dispositivos
-en Contiki, que ya no es a través de ficheros como en OpenWRT, sino escribiendo
-directamente los registros de Entrada/Salida.
+_Analiza en detalle la implementación de las fun-_
+_ciones motion_click_enable(MIKROBUS_1) y_
+_motion_click_attach_callback(MIKROBUS_1, motion_callback)._
+_Compara las funciones internas de la librería LetMeCreate con las de la práctica 1, y_
+_verás importantes diferencias; por ejemplo, en el modo de acceder a los dispositivos_
+_en Contiki, que ya no es a través de ficheros como en OpenWRT, sino escribiendo_
+_directamente los registros de Entrada/Salida._
 
 
 
@@ -273,6 +273,33 @@ Observamos que lo primero que hacemos es intentar optener el pin de entrada/sali
 Para ello con la inferfaz de letmecreate esta tan fin como pasarle el indice
 mikrobus para poder identificarlo, por lo tanto le pasamos un puntero a la función
 gpio_get_pin y si retorna 0, tendremos el valor del pin en nuestro puntero.
+
+
+Una vez sacado el valor del pin llamamos a sus correspondientes funciones de iniciali-
+zación.
+
+
+
+_Estrictamente, la implementación de este ejemplo viola el estilo de planificación de_
+_Contiki. ¿Por qué? Modifica el ejemplo para hacerlo acorde con dicho estilo de pla-_
+_nificación._
+
+En el ejemplo observamos un único proceso que llama a un buble infinito  que no hace 
+nada (while(1){}) esto es debido a que con la función:
+
+        motion_click_attach_callback(MIKROBUS_1, motion_callback);
+
+El ejemplo funcionará correctamente debido a que la función motion_callback recibira
+los eventos disparados por el sensor y encendera los leds.
+
+
+Este ejemplo no respeta la filosofia de contiki debido a que contiki esta diseñado
+para que sean los propios procesos los que reciban los eventos y segun el dato
+pasado como parameto actue de una forma u otra, el ejemplo no sigue esta filosofia
+delegando todo en funciones de letmecreate.
+
+
+
 
 
 
