@@ -9,13 +9,13 @@ Lucas Segarra Fernández
 ## Memoria
 
 
-_Analiza los ficheros xc.h y proc/p32mx470f512h.h, tratando de entender cómo_
-
-_se realiza el acceso a los registros de Entrada/Salida. Puedes utilizar el pro-_
-_pio editor de MPLAB, que permite navegar sencillamente a través de los fi-_
-_cheros de tu proyecto. También puede resultarte útil analizar el código des-_
-_ensambaldo por medio del depurador, opción que se explica más adelan-_
-_te en este documento. Por último, te puede resultar útil la siguiente página:_
+__Analiza los ficheros xc.h y proc/p32mx470f512h.h, tratando de entender cómo__
+__
+__se realiza el acceso a los registros de Entrada/Salida. Puedes utilizar el pro-__
+__pio editor de MPLAB, que permite navegar sencillamente a través de los fi-__
+__cheros de tu proyecto. También puede resultarte útil analizar el código des-__
+__ensambaldo por medio del depurador, opción que se explica más adelan-__
+__te en este documento. Por último, te puede resultar útil la siguiente página:__
 
 http://www.johnloomis.org/microchip/pic32/bitfields/bitfield3.html
 
@@ -75,11 +75,11 @@ Esta union (no memory fragment) nos permite acceder a los diferentes campos de b
       T1CONbits.TON = 1;
     
 
-_Depura la aplicación con la herramienta Simulator. Puedes partir de las pruebas su-_
-_geridas en esta sección y probar otras opciones que vayas descubriendo. Luego, de-_
-_pura la aplicación en la placa, siguiendo instrucciones similares (en este caso, ten-_
-_drás que reconfigurar el proyecto para que utilice como herramienta hardware el_
-_PICkit-3)._
+__Depura la aplicación con la herramienta Simulator. Puedes partir de las pruebas su-__
+__geridas en esta sección y probar otras opciones que vayas descubriendo. Luego, de-__
+__pura la aplicación en la placa, siguiendo instrucciones similares (en este caso, ten-__
+__drás que reconfigurar el proyecto para que utilice como herramienta hardware el__
+__PICkit-3).__
 
 Project_properties -> Elegimos Simulator.
 Tools->options->Embedded->Debug startud[Halt at Main].
@@ -90,14 +90,14 @@ lo único que haremos será poner los bits determinados a 1 para que se encienda
 También se nos presenta la opción de _Halt at Reset Vector_ esto es muy util para cuando nos interesa
 para el sistema justo cuando el core se resetea.
 
-_¿Cuál es y dónde se invoca la función que inicializa los LEDs? Analiza a fondo tan-_
-_to la función genérica de Contiki como la función específica de la placa con la que_
-
-_estamos trabajando._
-_Analiza la función ledstoggle hasta encontrar el código de escritura en el registro de_
-_entrada/salida conectado con el LED1 y relaciónalo con el código Bare Metal de la_
-_sección anterior. Si lo necesitas, puedes ayudarte del depurador, como se explica en_
-_la sección siguiente._
+__¿Cuál es y dónde se invoca la función que inicializa los LEDs? Analiza a fondo tan-__
+__to la función genérica de Contiki como la función específica de la placa con la que__
+__
+__estamos trabajando.__
+__Analiza la función ledstoggle hasta encontrar el código de escritura en el registro de__
+__entrada/salida conectado con el LED1 y relaciónalo con el código Bare Metal de la__
+__sección anterior. Si lo necesitas, puedes ayudarte del depurador, como se explica en__
+__la sección siguiente.__
 
 leds_init es una funcion de contiki definida en core/dev/leds.h.
 La implementación de estas funciones se suelen encontrar en el fichero leds_arch.v de 
@@ -192,8 +192,8 @@ Correspondientes macros: /cpu/pic32/lib/pic32_gpio.h
 
 ```
 
-_¿Qué tendrías que modificar en el fichero test-motion.c para que sólo se ilumine el
-LED de la derecha al detectar movimiento?_
+__¿Qué tendrías que modificar en el fichero test-motion.c para que sólo se ilumine el__
+__LED de la derecha al detectar movimiento?__
 
 Bastaría con intercambiar la llamada a la función leds_on(LEDS_ALL) por
 leds_toggle(LED1); o leds_on(LED1);
@@ -208,13 +208,13 @@ Porque los botones son un puerto de entrada, por lo tanto nos vale con leer su v
 y comprobar como esta el estado de tensión.
 
 
-_El fichero relay-click.c tiene un pequeño bug que ha-_
-_ce que uno de los dos relés no funcione. Trata de encontrar y solucionar la_
-_errata. A continuación, implementa una nueva función en ese mismo fichero_
-_relay-click.c) que intercambie el estado del relé 1 por el del relé 2 y vice-_
-_versa; es decir, si el relé 1 está cerrado y el 2 abierto, el 1 pasará a estar abierto_
-_y el 2 cerrado. Prueba esta nueva función modificando el ejemplo disponible en_
-_platform/mikro-e/apps/test-relay/test-relay.c._
+__El fichero relay-click.c tiene un pequeño bug que ha-__
+__ce que uno de los dos relés no funcione. Trata de encontrar y solucionar la__
+__errata. A continuación, implementa una nueva función en ese mismo fichero__
+__relay-click.c) que intercambie el estado del relé 1 por el del relé 2 y vice-__
+__versa; es decir, si el relé 1 está cerrado y el 2 abierto, el 1 pasará a estar abierto__
+__y el 2 cerrado. Prueba esta nueva función modificando el ejemplo disponible en__
+__platform/mikro-e/apps/test-relay/test-relay.c.__
 
 
 La errata la encontramos en la definicion de los enumerados de los Relés
@@ -239,13 +239,13 @@ void change()
 
 
 
-_Analiza en detalle la implementación de las fun-_
-_ciones motion_click_enable(MIKROBUS_1) y_
-_motion_click_attach_callback(MIKROBUS_1, motion_callback)._
-_Compara las funciones internas de la librería LetMeCreate con las de la práctica 1, y_
-_verás importantes diferencias; por ejemplo, en el modo de acceder a los dispositivos_
-_en Contiki, que ya no es a través de ficheros como en OpenWRT, sino escribiendo_
-_directamente los registros de Entrada/Salida._
+__Analiza en detalle la implementación de las fun-__
+__ciones motion_click_enable(MIKROBUS_1) y__
+__motion_click_attach_callback(MIKROBUS_1, motion_callback).__
+__Compara las funciones internas de la librería LetMeCreate con las de la práctica 1, y__
+__verás importantes diferencias; por ejemplo, en el modo de acceder a los dispositivos__
+__en Contiki, que ya no es a través de ficheros como en OpenWRT, sino escribiendo__
+__directamente los registros de Entrada/Salida.__
 
 
 
@@ -280,9 +280,9 @@ zación.
 
 
 
-_Estrictamente, la implementación de este ejemplo viola el estilo de planificación de_
-_Contiki. ¿Por qué? Modifica el ejemplo para hacerlo acorde con dicho estilo de pla-_
-_nificación._
+__Estrictamente, la implementación de este ejemplo viola el estilo de planificación de__
+__Contiki. ¿Por qué? Modifica el ejemplo para hacerlo acorde con dicho estilo de pla-__
+__nificación.__
 
 En el ejemplo observamos un único proceso que llama a un buble infinito  que no hace 
 nada (while(1){}) esto es debido a que con la función:
@@ -340,13 +340,3 @@ PROCESS_THREAD(main_process, ev, data)
 /*---------------------------------------------------------------------------*/
 
 ```
-
-
-
-
-
-
-
-
-
-
