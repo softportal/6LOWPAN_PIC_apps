@@ -347,6 +347,6 @@ PROCESS_THREAD(main_process, ev, data)
 
 ### MAP
 
-Ejercicio Leds + motion + button VANILLA : test-motion-button0
-Ejercicio Leds + motion + button letmecreate : test-motion-button1
+* Ejercicio Leds + motion + button VANILLA : test-motion-button0
+* Ejercicio Leds + motion + button letmecreate : test-motion-button1
 
