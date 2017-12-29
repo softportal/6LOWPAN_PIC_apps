@@ -3,6 +3,7 @@
 ### Alumnos
 
 Sergio Semedi Barranco
+
 Lucas Segarra Fernández
 
 
@@ -341,17 +342,11 @@ PROCESS_THREAD(main_process, ev, data)
 
 ```
 
-__Para finalizar esta sección, analiza el fichero que implementa el interfaz LetMeCreate__
-__con el relé (relay2.c). Al igual que en el caso anterior, este fichero tiene un peque-__
-__ño bug que hace que uno de los dos relés no funcione. Trata de encontrar y solucio-__
-__nar la errata. A continuación, implementa un ejemplo que utilice este interfaz para__
-__controlar el relé.__
 
-Encontramos facilmente el error en la función:
 
-```c
-}
-```
 
-Si nos fijamos la función nos retornara -1 en el
+### MAP
+
+Ejercicio Leds + motion + button VANILLA : test-motion-button0
+Ejercicio Leds + motion + button letmecreate : test-motion-button1
 
